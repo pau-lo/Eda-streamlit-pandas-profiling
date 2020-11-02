@@ -30,7 +30,7 @@ def render_eda():
         # to adjust profile report check this link
         # https://pandas-profiling.github.io/pandas-profiling/docs/master/rtd/index.html
         # use --> (minimal=True) setting for large datasets
-        pr = ProfileReport(df, minimal=True) # explorative=True)
+        pr = ProfileReport(df, explorative=True)
         st.title("Pandas Profiling Report in Streamlit")
         st.write(df)
         st_profile_report(pr)
