@@ -24,34 +24,48 @@ def render_eda():
     st.subheader("Exploratory Data Analysis using pandas profiling.")
     st.write("""All you need to do is upload a dataset and get a quick
             sense of your data.""")
+
+    data_size = st.selectbox(
+        'What kind of dataset size are you uploading?',
+        ('Small', 'Large')
+    )
+
+    st.write('You selected data size option: ', data_size)
+
     data = st.file_uploader("Upload Dataset", type=["csv", "txt"])
+
     if data is not None:
-        df = pd.read_csv(data)
-        # to adjust profile report check this link
-        # https://pandas-profiling.github.io/pandas-profiling/docs/master/rtd/index.html
-        # use --> (minimal=True) setting for large datasets
-        pr = ProfileReport(df, explorative=True)
-        st.title("Pandas Profiling Report in Streamlit")
-        st.write(df)
-        st_profile_report(pr)
-        pr.to_file("Output.html")
-        st.write("Your report has been saved!")
+        if data_size == 'Small':
+            df = pd.read_csv(data)
+            pr = ProfileReport(df, explorative=True)
+            st.title("Pandas Profiling Report in Streamlit")
+            st.dataframe(df)
+            st_profile_report(pr)
+            # pr.to_file("Output.html")
+            st.write("Your report is ready!")
+        else:
+            df = pd.read_csv(data)
+            pr = ProfileReport(df,  minimal=True)
+            st.title("Pandas Profiling Report in Streamlit")
+            st.dataframe(df)
+            st_profile_report(pr)
+            # pr.to_file("Output.html")
+            st.write("Your report is ready!")
 
 
 def render_about():
-    st.subheader("About")
     st.write(
         """An App facilitating exploratory data analysis by using
-        pandas profiling for streamlit."""
+            pandas profiling for streamlit."""
     )
     st.markdown(
         """Thank you [okld](
-            https://github.com/okld/streamlit-pandas-profiling) for
-            creating the pandas profiling component for streamlit.
-            Check out the [pandas-profiling](
-            https://pandas-profiling.github.io/pandas-profiling/docs/master/rtd/index.html)
-            main page for more ways to configure your exploratory analysis.
-        """
+                https://github.com/okld/streamlit-pandas-profiling) for
+                creating the pandas profiling component for streamlit.
+                Check out the [pandas-profiling](
+                https://pandas-profiling.github.io/pandas-profiling/docs/master/rtd/index.html)
+                main page for more ways to configure your exploratory analysis.
+            """
     )
 
 
