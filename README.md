@@ -6,4 +6,3 @@ Note:
 
   - To adjust profile report check this link
   - https://pandas-profiling.github.io/pandas-profiling/docs/master/rtd/index.html
-  - Also set *minimal=True* for large datasets
