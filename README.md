@@ -1,5 +1,7 @@
 # EDA Pandas Profiling using streamlit
 
+ [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/pau-lo/eda-using-pandas-profiling/main/app.py)
+
 Upload a dataset and use pandas profiling to create a complete exploratory data analysis via streamlit.
 
 
